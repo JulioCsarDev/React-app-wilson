@@ -1,5 +1,5 @@
 import { BrowserRouter } from "react-router-dom";
-import { PathnameProvider } from "./providers/PathnameProviders";
+import { PathnameProvider } from "./providers";
 import { AppRouting } from "./routing/AppRouting";
 
 function App() {

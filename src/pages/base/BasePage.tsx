@@ -11,9 +11,9 @@ export const BasePage = () => {
     },
     {
       id: 2,
-      title: " Productos",
-      path: "/products",
-      icon: "boxes",
+      title: " Empleados",
+      path: "/empleados",
+      icon: "people",
     },
   ];
   return (
@@ -26,7 +26,7 @@ export const BasePage = () => {
               <div
                 className="card rounded p-3 shadow"
                 style={{
-                  height: "150px",
+                  minHeight: "150px",
                 }}
               >
                 <Link

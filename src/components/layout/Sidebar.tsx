@@ -17,31 +17,30 @@ export const Sidebar = () => {
     },
     {
       id: 3,
-      title: "Productos",
-      path: "/products",
-      icon: "boxes",
+      title: "Empleados",
+      path: "/empleados",
+      icon: "people",
     },
   ];
 
   return (
     <div
-      className="d-flex justify-content-between flex-column"
-      style={{ width: "200px", background: "#1e293b" }}
+      className="d-flex justify-content-between flex-column bg-dark"
+      style={{ width: "200px" }}
     >
       <div style={{ height: "100%" }}>
         <div className="d-flex px-3 pt-3 text-white" style={{ height: "15%" }}>
           <img
-            style={{ height: "30px", width: "50px" }}
-            src={toAbsoluteUrl("/media/logo.jpg")}
+            style={{ height: "100px", width: "200px" }}
+            src={toAbsoluteUrl("/media/logo.png")}
           />
-          <h3 className="px-2 ">PMJJ</h3>
         </div>
-        <div className="d-flex flex-column" style={{ height: "85%" }}>
+        <div className="d-flex flex-column pt-4" style={{ height: "85%" }}>
           {menuItems.map((item) => (
             <Link
               key={item.id}
               to={item.path}
-              className="d-flex text-decoration-none text-white mx-2 my-2"
+              className="d-flex text-decoration-none text-white fs-4 mx-2 my-2 p-2 hover-success"
               style={{}}
             >
               <i className={`bi bi-${item.icon} mx-2`}></i>

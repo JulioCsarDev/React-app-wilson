@@ -21,7 +21,7 @@ function Card({ children, tittle, footer }: CardProps) {
         </div>
       </div>
       <div className="card-body">{children}</div>
-      <div className="card-footer">{footer}</div>
+      {footer && <div className="card-footer">{footer}</div>}
     </div>
   );
 }

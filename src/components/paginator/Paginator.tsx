@@ -27,7 +27,7 @@ export default function Pagination<T>({ table }: Props<T>) {
         <button
           key={i}
           type="button"
-          className={`btn ${pageIndex === i ? "active" : ""} btn-sm btn-light`}
+          className={`btn ${pageIndex === i ? "active" : ""} btn-sm`}
           onClick={() => table.setPageIndex(i)}
         >
           {i + 1}
@@ -62,7 +62,7 @@ export default function Pagination<T>({ table }: Props<T>) {
         </button>
       );
     }
-    return null;
+    return null; // No ellipsis needed if we're in the last group
   };
   return (
     <div className="d-flex justify-content-between">
@@ -73,8 +73,7 @@ export default function Pagination<T>({ table }: Props<T>) {
           onChange={(e) => {
             table.setPageSize(Number(e.target.value));
           }}
-          className=""
-          data-datatable-size="true"
+          className="select"
           name="perpage"
         >
           {[5, 10, 20, 30, 40, 50].map((pageSize) => (
@@ -86,14 +85,14 @@ export default function Pagination<T>({ table }: Props<T>) {
         registros por página
       </div>
 
-      <div className="d-flex align-items-center gap-4 order-1">
+      <div className="d-flex align-items-center gap-4">
         <span>
           {from} - {to} de {totalRows}
         </span>
-        <div className="pagination gap-2">
+        <div className="pagination d-flex gap-2">
           <button
             type="button"
-            className="btn btn-sm border-0"
+            className="btn btn-sm"
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
           >
@@ -103,7 +102,7 @@ export default function Pagination<T>({ table }: Props<T>) {
           <Fragment>{renderPageButtons()}</Fragment>
           {renderEllipsisNextButton()}
           <button
-            className="btn btn-sm border-0"
+            className="btn btn-sm"
             type="button"
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}

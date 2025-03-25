@@ -1,4 +1,3 @@
-import { DataTable } from "../../components/datatable/DataTable";
 import { Container } from "../../components/container/Container";
 import Card from "../../components/layout/Card";
 import { columns } from "./components/Columns";
@@ -9,21 +8,23 @@ import {
   getFilteredRowModel,
   getSortedRowModel,
 } from "@tanstack/react-table";
-import { useUsers } from "./hooks/useUsers";
+import { DataTable } from "../../components/datatable/DataTable";
+import { useProducts } from "./hooks/useProducts";
 
-export const UsersPage = () => {
-  const { data: Users } = useUsers();
+export const ProductsPages = () => {
+  const { data: Products } = useProducts();
   const table = useReactTable({
-    data: Users || [],
+    data: Products || [],
     columns: columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
   });
+
   return (
     <Container>
-      <Card tittle="Usuarios">
+      <Card tittle="Empleados">
         <DataTable table={table} columns={columns} />
       </Card>
     </Container>
