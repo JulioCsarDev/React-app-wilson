@@ -1,26 +1,26 @@
-import { ProductsModel } from "../models/products.models";
+import { EmployeesModel } from "../models/employees.models";
 import { ColumnDef } from "@tanstack/react-table";
 
-export const columns: ColumnDef<ProductsModel>[] = [
+export const columns: ColumnDef<EmployeesModel>[] = [
   {
     accessorKey: "number",
     header: "N°",
     cell: ({ row }) => row.index + 1,
   },
   {
-    accessorKey: "name",
+    accessorKey: "CC",
+    header: "Cedula",
+    cell: ({ row }) => row.original.CC,
+  },
+  {
+    accessorKey: "NOM",
     header: "Nombre",
-    cell: ({ row }) => row.original.name,
+    cell: ({ row }) => row.original.NOM,
   },
   {
-    accessorKey: "amount",
-    header: "Cantidad",
-    cell: ({ row }) => row.original.amount,
-  },
-  {
-    accessorKey: "price",
-    header: "Precio",
-    cell: ({ row }) => row.original.price,
+    accessorKey: "CENTRO",
+    header: "Centro",
+    cell: ({ row }) => row.original.CENTRO,
   },
   {
     accessorKey: "action",
@@ -28,10 +28,13 @@ export const columns: ColumnDef<ProductsModel>[] = [
     cell: ({ row }) => {
       return (
         <div className="d-flex gap-2">
-          <button className="btn btn-sm btn-primary">
+          <button className="btn btn-sm btn-outline-secondary">
+            <i className="bi bi-eye"></i>
+          </button>
+          <button className="btn btn-sm btn-outline-primary">
             <i className="bi bi-pencil-square"></i>
           </button>
-          <button className="btn btn-sm btn-danger">
+          <button className="btn btn-sm btn-outline-danger">
             <i className="bi bi-trash3"></i>
           </button>
         </div>

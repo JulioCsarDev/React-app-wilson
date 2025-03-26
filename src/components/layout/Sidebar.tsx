@@ -25,22 +25,22 @@ export const Sidebar = () => {
 
   return (
     <div
-      className="d-flex justify-content-between flex-column bg-dark"
-      style={{ width: "200px" }}
+      className="d-flex justify-content-between flex-column darky"
+      style={{ width: "300px" }}
     >
-      <div style={{ height: "100%" }}>
-        <div className="d-flex px-3 pt-3 text-white" style={{ height: "15%" }}>
+      <div style={{ height: "100%", position: "fixed" }}>
+        <div className="d-flex px-3 pt-3 text-white" style={{ height: "14%" }}>
           <img
             style={{ height: "100px", width: "200px" }}
             src={toAbsoluteUrl("/media/logo.png")}
           />
         </div>
-        <div className="d-flex flex-column pt-4" style={{ height: "85%" }}>
+        <div className="d-flex flex-column pt-4" style={{ height: "80%" }}>
           {menuItems.map((item) => (
             <Link
               key={item.id}
               to={item.path}
-              className="d-flex text-decoration-none text-white fs-4 mx-2 my-2 p-2 hover-success"
+              className="d-flex text-decoration-none text-white mx-2 my-2 p-2 btn-hover-success"
               style={{}}
             >
               <i className={`bi bi-${item.icon} mx-2`}></i>
@@ -48,12 +48,12 @@ export const Sidebar = () => {
             </Link>
           ))}
         </div>
-      </div>
-      <div className="d-flex justify-content-center pb-2">
-        <button className="btn btn-outline-secondary text-white">
-          <i className="bi bi-box-arrow-right pe-2"></i>
-          Cerrar Sesión
-        </button>
+        <div className="d-flex justify-content-center align-items-center" style={{ height: "6%" }}>
+          <button className="btn btn-outline-secondary text-white btn-hover-danger">
+            <i className="bi bi-box-arrow-right pe-2"></i>
+            Cerrar Sesión
+          </button>
+        </div>
       </div>
     </div>
   );

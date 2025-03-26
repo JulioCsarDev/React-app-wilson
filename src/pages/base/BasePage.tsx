@@ -22,16 +22,16 @@ export const BasePage = () => {
       <div className="d-grid">
         <div className="row">
           {modules.map((item) => (
-            <div className="col" key={item.id}>
+            <Link
+              to={item.path} className="col card-hover text-decoration-none" key={item.id}>
               <div
                 className="card rounded p-3 shadow"
                 style={{
                   minHeight: "150px",
                 }}
               >
-                <Link
-                  to={item.path}
-                  className="d-flex flex-column h-100 justify-content-between text-decoration-none text-black"
+                <div
+                  className="d-flex flex-column h-100 justify-content-between text-black"
                 >
                   <div>
                     <i className={`bi bi-${item.icon} mx-2 fs-3`}></i>
@@ -44,9 +44,9 @@ export const BasePage = () => {
                       Actualizar, Eliminar).
                     </span>
                   </div>
-                </Link>
+                </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

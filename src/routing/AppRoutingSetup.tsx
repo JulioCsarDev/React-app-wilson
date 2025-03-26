@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router";
 import { Main } from "../components/layout/main/Main";
 import { BasePage } from "../pages/base/BasePage";
 import { UsersPage } from "../pages/users/UsersPage";
-import { ProductsPages } from "../pages/products/ProductsPage";
+import { ProductsPages } from "../pages/products/EmployeesPage";
 
 export const AppRoutingSetup = (): ReactElement => {
   return (

@@ -27,7 +27,7 @@ export default function Pagination<T>({ table }: Props<T>) {
         <button
           key={i}
           type="button"
-          className={`btn ${pageIndex === i ? "active" : ""} btn-sm`}
+          className={`btn ${pageIndex === i ? "active" : ""} btn-light`}
           onClick={() => table.setPageIndex(i)}
         >
           {i + 1}

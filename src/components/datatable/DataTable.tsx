@@ -16,9 +16,9 @@ export const DataTable = <TData,>({
       <table className="table table-striped">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id} className="">
+            <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
-                <th key={header.id} className="px-4">
+                <th key={header.id} className="px-4 text-warning" style={{ backgroundColor: "#212529", fontSize: "14px" }}>
                   <>{header.column.columnDef.header}</>
                 </th>
               ))}

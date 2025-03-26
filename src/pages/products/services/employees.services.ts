@@ -1,8 +1,8 @@
 import { api } from "../../../config/axios.instance";
 
-export const GetProducts = async () => {
+export const GetAllEmployees = async () => {
   try {
-    const { data } = await api.get("products/get_all_products");
+    const { data } = await api.get("/employees/get_all_employees");
     return data;
   } catch (error) {
     console.error(error);
