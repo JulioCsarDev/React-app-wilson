@@ -48,7 +48,10 @@ export const Sidebar = () => {
             </Link>
           ))}
         </div>
-        <div className="d-flex justify-content-center align-items-center" style={{ height: "6%" }}>
+        <div
+          className="d-flex justify-content-center align-items-center"
+          style={{ height: "6%" }}
+        >
           <button className="btn btn-outline-secondary text-white btn-hover-danger">
             <i className="bi bi-box-arrow-right pe-2"></i>
             Cerrar Sesión

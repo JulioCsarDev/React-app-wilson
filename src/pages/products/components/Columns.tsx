@@ -18,6 +18,11 @@ export const columns: ColumnDef<EmployeesModel>[] = [
     cell: ({ row }) => row.original.NOM,
   },
   {
+    accessorKey: "CAR",
+    header: "Cargo",
+    cell: ({ row }) => row.original.CAR,
+  },
+  {
     accessorKey: "CENTRO",
     header: "Centro",
     cell: ({ row }) => row.original.CENTRO,

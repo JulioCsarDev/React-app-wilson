@@ -7,17 +7,18 @@ import {
   getPaginationRowModel,
   getFilteredRowModel,
   getSortedRowModel,
-  SortingState
+  SortingState,
 } from "@tanstack/react-table";
 import { DataTable } from "../../components/datatable/DataTable";
 import { useEmployees } from "./hooks/useEmployees";
 import Pagination from "../../components/paginator/Paginator";
 import { useState } from "react";
+import { ModalUploadFile } from "./components/ModalUploadFile";
 
 export const ProductsPages = () => {
   const { data: Employees } = useEmployees();
 
-  const [globalFilter, setGlobalFilter] = useState('');
+  const [globalFilter, setGlobalFilter] = useState("");
   const [sorting, setSorting] = useState<SortingState>([]);
 
   const table = useReactTable({
@@ -29,30 +30,36 @@ export const ProductsPages = () => {
     getSortedRowModel: getSortedRowModel(),
     state: {
       globalFilter,
-      sorting
+      sorting,
     },
     onGlobalFilterChange: setGlobalFilter,
-    onSortingChange: setSorting
+    onSortingChange: setSorting,
   });
 
   return (
     <Container>
-      <Card tittle="Empleados" toolbar={
-        <div className="input-group w-25">
-          <div className="input-group-prepend">
-            <span className="input-group-text" id="basic-addon1">
-              <i className="bi bi-search"></i>
-            </span>
-          </div>
-          <input
-            className="form-control"
-            value={globalFilter || ''}
-            onChange={(e) => setGlobalFilter(e.target.value)}
-            placeholder="Buscar"
-          />
-        </div>
-      }>
-        <DataTable table={table} columns={columns} footer={<Pagination table={table} />} />
+      <Card tittle="Empleados" toolbar={<ModalUploadFile />}>
+        <DataTable
+          table={table}
+          columns={columns}
+          footer={<Pagination table={table} />}
+          nameTable="Lista de Empleados"
+          filterGlobal={
+            <div className="input-group w-25">
+              <div className="input-group-prepend">
+                <span className="input-group-text" id="basic-addon1">
+                  <i className="bi bi-search"></i>
+                </span>
+              </div>
+              <input
+                className="form-control"
+                value={globalFilter || ""}
+                onChange={(e) => setGlobalFilter(e.target.value)}
+                placeholder="Buscar"
+              />
+            </div>
+          }
+        />
       </Card>
     </Container>
   );
