@@ -1,7 +1,12 @@
+import { useState } from "react";
+import { useUsers } from "./hooks/useUsers";
+import { columns } from "./components/Columns";
+import Card from "../../components/layout/Card";
+import { UsersModel } from "./models/users.models";
+import { ModalNewUser } from "./components/ModalNewUser";
+import Pagination from "../../components/paginator/Paginator";
 import { DataTable } from "../../components/datatable/DataTable";
 import { Container } from "../../components/container/Container";
-import Card from "../../components/layout/Card";
-import { columns } from "./components/Columns";
 import {
   useReactTable,
   getCoreRowModel,
@@ -10,18 +15,25 @@ import {
   getSortedRowModel,
   SortingState,
 } from "@tanstack/react-table";
-import { useUsers } from "./hooks/useUsers";
-import { useState } from "react";
-import { ModalNewUser } from "./components/ModalNewUser";
+import { ModalUpdateUser } from "./components/ModalUpdateUser";
 
 export const UsersPage = () => {
   const { data: Users } = useUsers();
   const [globalFilter, setGlobalFilter] = useState("");
   const [sorting, setSorting] = useState<SortingState>([]);
 
+  const [selectedUser, setSelectedUser] = useState<UsersModel | null>(null);
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleClickEdit = (user: UsersModel) => {
+    setSelectedUser(user);
+    setIsOpen(true);
+  }
+
   const table = useReactTable({
     data: Users || [],
-    columns: columns,
+    columns: columns({ handleClickEdit }),
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
@@ -38,12 +50,13 @@ export const UsersPage = () => {
       <Card tittle="Usuarios" toolbar={<ModalNewUser />}>
         <DataTable
           table={table}
-          columns={columns}
+          columns={columns({ handleClickEdit })}
           nameTable="Lista de Usuarios"
+          footer={<Pagination table={table} />}
           filterGlobal={
             <div className="input-group w-25">
               <div className="input-group-prepend">
-                <span className="input-group-text" id="basic-addon1">
+                <span className="input-group-text">
                   <i className="bi bi-search"></i>
                 </span>
               </div>
@@ -56,6 +69,7 @@ export const UsersPage = () => {
             </div>
           }
         />
+        <ModalUpdateUser user={selectedUser} isOpen={isOpen} setIsOpen={setIsOpen} />
       </Card>
     </Container>
   );

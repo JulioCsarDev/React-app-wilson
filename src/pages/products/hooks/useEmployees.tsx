@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 
 export const useEmployees = () => {
   const queryUsers = useQuery({
-    queryKey: "products",
+    queryKey: "employees",
     queryFn: GetAllEmployees,
   });
   return queryUsers;

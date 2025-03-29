@@ -1,7 +1,12 @@
-import { UsersModel } from "../models/users.models";
+import { DeleteUser } from "./DeleteUser";
 import { ColumnDef } from "@tanstack/react-table";
+import { UsersModel } from "../models/users.models";
 
-export const columns: ColumnDef<UsersModel>[] = [
+interface ColumnsProps {
+  handleClickEdit: (user: UsersModel) => void;
+}
+
+export const columns = ({ handleClickEdit }: ColumnsProps): ColumnDef<UsersModel>[] => [
   {
     accessorKey: "number",
     header: "N°",
@@ -10,7 +15,12 @@ export const columns: ColumnDef<UsersModel>[] = [
   {
     accessorKey: "user",
     header: "Usuario",
-    cell: ({ row }) => row.original.user,
+    cell: ({ row }) => row.original.name,
+  },
+  {
+    accessorKey: "email",
+    header: "Email",
+    cell: ({ row }) => row.original.email,
   },
   {
     accessorKey: "password",
@@ -18,20 +28,23 @@ export const columns: ColumnDef<UsersModel>[] = [
     cell: ({ row }) => row.original.password,
   },
   {
+    accessorKey: "created_user",
+    header: "Fecha creación",
+    cell: ({ row }) => {
+      const date = new Date(row.original.created_user);
+      return date.toLocaleDateString("es-ES", {});
+    },
+  },
+  {
     accessorKey: "action",
     header: "Acciones",
     cell: ({ row }) => {
       return (
         <div className="d-flex gap-2">
-          <button className="btn btn-sm btn-outline-secondary">
-            <i className="bi bi-eye"></i>
-          </button>
-          <button className="btn btn-sm btn-outline-primary">
+          <button className="btn btn-sm btn-outline-primary" onClick={() => handleClickEdit(row.original)}>
             <i className="bi bi-pencil-square"></i>
           </button>
-          <button className="btn btn-sm btn-outline-danger">
-            <i className="bi bi-trash3"></i>
-          </button>
+          <DeleteUser userId={row.original.id} />
         </div>
       );
     },

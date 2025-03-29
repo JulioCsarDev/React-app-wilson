@@ -18,20 +18,20 @@ export const DataTable = <TData,>({
 }: DataTableProps<TData>) => {
   return (
     <div className="card">
-      <div className="card-header d-flex justify-content-between align-items-center">
+      <div className="card-header d-flex justify-content-between align-items-center bg-white">
         <h4 className="fw-semibold p-2">{nameTable}</h4>
         {filterGlobal}
       </div>
       <div className="card-table">
-        <table className="table table-striped">
+        <table className="table">
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
                   <th
                     key={header.id}
-                    className="px-4 text-warning"
-                    style={{ backgroundColor: "#212529", fontSize: "14px" }}
+                    className="px-4"
+                    style={{ backgroundColor: '#F8F8F8', fontSize: "14px" }}
                   >
                     <>{header.column.columnDef.header}</>
                   </th>

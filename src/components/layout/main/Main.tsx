@@ -1,3 +1,4 @@
+import { Toaster } from 'sonner';
 import { Footer } from "../Footer";
 import { Header } from "../Header";
 import { Sidebar } from "../Sidebar";
@@ -18,6 +19,7 @@ export const Main = () => {
           <Footer />
         </div>
       </div>
+      <Toaster richColors />
     </div>
   );
 };
