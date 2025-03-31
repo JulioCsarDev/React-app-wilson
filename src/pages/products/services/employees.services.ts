@@ -10,4 +10,4 @@ export const UploadFile = async (file: File) => {
   formData.append("file", file);
   const { data } = await api.post("/employees/upload_file", formData);
   return data;
-}
+};

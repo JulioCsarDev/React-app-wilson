@@ -21,6 +21,12 @@ export const Sidebar = () => {
       path: "/empleados",
       icon: "people",
     },
+    {
+      id: 4,
+      title: "Reportes",
+      path: "/download_file_employees",
+      icon: "file-earmark-arrow-down",
+    },
   ];
 
   return (
