@@ -17,12 +17,18 @@ export const Sidebar = () => {
     },
     {
       id: 3,
-      title: "Empleados",
-      path: "/empleados",
+      title: "Conductores",
+      path: "/conductores",
       icon: "people",
     },
     {
       id: 4,
+      title: "Vehiculos",
+      path: "/vehiculos",
+      icon: "car-front-fill",
+    },
+    {
+      id: 5,
       title: "Reportes",
       path: "/download_file_employees",
       icon: "file-earmark-arrow-down",

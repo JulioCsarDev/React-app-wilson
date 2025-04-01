@@ -1,6 +1,6 @@
 import { Container } from "../../components/container/Container";
 import Card from "../../components/layout/Card";
-import { columns } from "./components/Columns";
+import { columns } from "../products/components/Columns";
 import {
   useReactTable,
   getCoreRowModel,
@@ -10,12 +10,12 @@ import {
   SortingState,
 } from "@tanstack/react-table";
 import { DataTable } from "../../components/datatable/DataTable";
-import { useEmployees } from "./hooks/useEmployees";
+import { useEmployees } from "../products/hooks/useEmployees";
 import Pagination from "../../components/paginator/Paginator";
 import { useState } from "react";
-import { ModalUploadFile } from "./components/ModalUploadFile";
+import { ModalUploadFile } from "../products/components/ModalUploadFile";
 
-export const ProductsPages = () => {
+export const VehiculosPage = () => {
   const { data: Employees } = useEmployees();
 
   const [globalFilter, setGlobalFilter] = useState("");
@@ -38,12 +38,12 @@ export const ProductsPages = () => {
 
   return (
     <Container>
-      <Card tittle="Empleados" toolbar={<ModalUploadFile />}>
+      <Card tittle="Vehiculos" toolbar={<ModalUploadFile />}>
         <DataTable
           table={table}
           columns={columns}
           footer={<Pagination table={table} />}
-          nameTable="Lista de Empleados"
+          nameTable="Lista de Vehiculos"
           filterGlobal={
             <div className="input-group w-25">
               <div className="input-group-prepend">

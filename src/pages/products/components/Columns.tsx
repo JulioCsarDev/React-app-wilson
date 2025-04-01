@@ -1,31 +1,31 @@
-import { EmployeesModel } from "../models/employees.models";
+import { ConductorModel } from "../models/conductor.models";
 import { ColumnDef } from "@tanstack/react-table";
 
-export const columns: ColumnDef<EmployeesModel>[] = [
+export const columns: ColumnDef<ConductorModel>[] = [
   {
     accessorKey: "number",
     header: "N°",
     cell: ({ row }) => row.index + 1,
   },
   {
-    accessorKey: "CC",
+    accessorKey: "numero_identificacion",
     header: "Cedula",
-    cell: ({ row }) => row.original.CC,
+    cell: ({ row }) => row.original.numero_identificacion,
   },
   {
-    accessorKey: "NOM",
+    accessorKey: "nombre_conductor",
     header: "Nombre",
-    cell: ({ row }) => row.original.NOM,
+    cell: ({ row }) => row.original.nombre_conductor,
   },
   {
-    accessorKey: "CAR",
+    accessorKey: "apellido_conductor",
+    header: "Apellido",
+    cell: ({ row }) => row.original.apellido_conductor,
+  },
+  {
+    accessorKey: "cargo",
     header: "Cargo",
-    cell: ({ row }) => row.original.CAR,
-  },
-  {
-    accessorKey: "CENTRO",
-    header: "Centro",
-    cell: ({ row }) => row.original.CENTRO,
+    cell: ({ row }) => row.original.cargo,
   },
   {
     accessorKey: "action",

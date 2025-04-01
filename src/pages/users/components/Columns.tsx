@@ -6,7 +6,9 @@ interface ColumnsProps {
   handleClickEdit: (user: UsersModel) => void;
 }
 
-export const columns = ({ handleClickEdit }: ColumnsProps): ColumnDef<UsersModel>[] => [
+export const columns = ({
+  handleClickEdit,
+}: ColumnsProps): ColumnDef<UsersModel>[] => [
   {
     accessorKey: "number",
     header: "N°",
@@ -15,17 +17,17 @@ export const columns = ({ handleClickEdit }: ColumnsProps): ColumnDef<UsersModel
   {
     accessorKey: "user",
     header: "Usuario",
-    cell: ({ row }) => row.original.name,
+    cell: ({ row }) => row.original.name_surname,
   },
   {
     accessorKey: "email",
     header: "Email",
-    cell: ({ row }) => row.original.email,
+    cell: ({ row }) => row.original.email_user,
   },
   {
     accessorKey: "password",
     header: "Contraseña",
-    cell: ({ row }) => row.original.password,
+    cell: ({ row }) => row.original.pass_user,
   },
   {
     accessorKey: "created_user",
@@ -41,7 +43,10 @@ export const columns = ({ handleClickEdit }: ColumnsProps): ColumnDef<UsersModel
     cell: ({ row }) => {
       return (
         <div className="d-flex gap-2">
-          <button className="btn btn-sm btn-outline-primary" onClick={() => handleClickEdit(row.original)}>
+          <button
+            className="btn btn-sm btn-outline-primary"
+            onClick={() => handleClickEdit(row.original)}
+          >
             <i className="bi bi-pencil-square"></i>
           </button>
           <DeleteUser userId={row.original.id} />

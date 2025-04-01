@@ -16,17 +16,17 @@ export const ModalUpdateUser = ({ user, isOpen, setIsOpen }: Props) => {
   const { mutate: updateMutate } = useUpdateUser();
 
   const UsersSchema = Yup.object().shape({
-    name: Yup.string().required("El Nombre es requerido"),
-    email: Yup.string().required("El Correo es requerido"),
-    password: Yup.string().required("La contraseña es requerida"),
+    name_surname: Yup.string().required("El Nombre es requerido"),
+    email_user: Yup.string().required("El Correo es requerido"),
+    pass_user: Yup.string().required("La contraseña es requerida"),
   });
 
   const updateFormik = useFormik({
     initialValues: {
       id: user?.id || 0,
-      name: user?.name || "",
-      email: user?.email || "",
-      password: user?.password || "",
+      name: user?.name_surname || "",
+      email: user?.email_user || "",
+      password: user?.pass_user || "",
     },
     validationSchema: UsersSchema,
     onSubmit: async (values) => {
@@ -61,9 +61,9 @@ export const ModalUpdateUser = ({ user, isOpen, setIsOpen }: Props) => {
 
   useEffect(() => {
     updateFormik.setFieldValue("id", user?.id);
-    updateFormik.setFieldValue("name", user?.name);
-    updateFormik.setFieldValue("email", user?.email);
-    updateFormik.setFieldValue("password", user?.password);
+    updateFormik.setFieldValue("name", user?.name_surname);
+    updateFormik.setFieldValue("email", user?.email_user);
+    updateFormik.setFieldValue("password", user?.pass_user);
   }, [user]);
 
   return (
