@@ -48,12 +48,20 @@ export const ModalUpdateUser = ({ user, isOpen, setIsOpen }: Props) => {
         },
       }).then((result) => {
         if (result.isConfirmed) {
-          updateMutate(values, {
-            onSuccess: () => {
-              updateFormik.resetForm();
-              setIsOpen(false);
+          updateMutate(
+            {
+              id: values.id,
+              name_surname: values.name,
+              email_user: values.email,
+              pass_user: values.password,
             },
-          });
+            {
+              onSuccess: () => {
+                updateFormik.resetForm();
+                setIsOpen(false);
+              },
+            }
+          );
         }
       });
     },

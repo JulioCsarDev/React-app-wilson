@@ -12,7 +12,7 @@ export const RegisterNewUser = async (user: RegisterUserModel) => {
 };
 
 export const UpdateUser = async (user: UserUpdateModel) => {
-  const { data } = await api.put("usersSQL/update_user", user);
+  const { data } = await api.put("usersSQLW/update_user", user);
   return data;
 };
 
