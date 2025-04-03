@@ -12,28 +12,28 @@ export const ModalNewDriver = () => {
   const { mutate: registerMutate } = useRegisterDriver();
 
   const DriverSchema = Yup.object().shape({
-    cedula: Yup.string().required("La Cédula es requerida"),
+    cedula: Yup.number().required("La Cédula es requerida"),
     nombre_apellido: Yup.string().required("El Nombre es requerido"),
     cargo: Yup.string().required("El Cargo es requerido"),
     vencimiento_licencia: Yup.string().required("Es requerido"),
-    dias_restantes_licencia: Yup.string().required("Es requerido"),
+    dias_restantes_licencia: Yup.number().required("Es requerido"),
     comparendos: Yup.string().required("Es requerido"),
     acuerdo_pago: Yup.string().required("Es requerido"),
     vencimiento_curso: Yup.string().required("Es requerido"),
-    dias_restantes_curso: Yup.string().required("Es requerido"),
+    dias_restantes_curso: Yup.number().required("Es requerido"),
   });
 
   const registerFormik = useFormik({
     initialValues: {
-      cedula: "",
+      cedula: undefined,
       nombre_apellido: "",
       cargo: "",
       vencimiento_licencia: "",
-      dias_restantes_licencia: "",
+      dias_restantes_licencia: undefined,
       comparendos: "",
       acuerdo_pago: "",
       vencimiento_curso: "",
-      dias_restantes_curso: "",
+      dias_restantes_curso: undefined,
     },
     validationSchema: DriverSchema,
     onSubmit: async (values) => {
@@ -72,7 +72,7 @@ export const ModalNewDriver = () => {
         <i className="bi bi-person-fill-add pe-2 fs-5"></i>
         Agregar Conductor
       </button>
-      <Modal className="" show={isOpen} onHide={() => setIsOpen(false)}>
+      <Modal size="lg" show={isOpen} onHide={() => setIsOpen(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Agregar Conductor</Modal.Title>
         </Modal.Header>
@@ -85,14 +85,14 @@ export const ModalNewDriver = () => {
                   <span className="text-danger">*</span>
                 </label>
                 <input
-                  name="name"
+                  name="cedula"
                   className={`form-control ${
                     registerFormik.errors.cedula &&
                     registerFormik.touched.cedula
                       ? "border-danger"
                       : ""
                   }`}
-                  placeholder="Nombre"
+                  placeholder="Cedula"
                   type="text"
                   value={registerFormik.values.cedula}
                   onChange={registerFormik.handleChange}
@@ -112,14 +112,14 @@ export const ModalNewDriver = () => {
                   <span className="text-danger">*</span>
                 </label>
                 <input
-                  name="password"
+                  name="nombre_apellido"
                   className={`form-control ${
                     registerFormik.errors.nombre_apellido &&
                     registerFormik.touched.nombre_apellido
                       ? "border-danger"
                       : ""
                   }`}
-                  placeholder="Contraseña"
+                  placeholder="Nombre"
                   type="text"
                   value={registerFormik.values.nombre_apellido}
                   onChange={registerFormik.handleChange}
@@ -139,13 +139,13 @@ export const ModalNewDriver = () => {
                   <span className="text-danger">*</span>
                 </label>
                 <input
-                  name="email"
+                  name="cargo"
                   className={`form-control ${
                     registerFormik.errors.cargo && registerFormik.touched.cargo
                       ? "border-danger"
                       : ""
                   }`}
-                  placeholder="Correo"
+                  placeholder="Cargo"
                   type="text"
                   value={registerFormik.values.cargo}
                   onChange={registerFormik.handleChange}
@@ -167,14 +167,14 @@ export const ModalNewDriver = () => {
                   <span className="text-danger">*</span>
                 </label>
                 <input
-                  name="name"
+                  name="vencimiento_licencia"
                   className={`form-control ${
                     registerFormik.errors.vencimiento_licencia &&
                     registerFormik.touched.vencimiento_licencia
                       ? "border-danger"
                       : ""
                   }`}
-                  placeholder="Nombre"
+                  placeholder=""
                   type="date"
                   value={registerFormik.values.vencimiento_licencia}
                   onChange={registerFormik.handleChange}
@@ -194,14 +194,14 @@ export const ModalNewDriver = () => {
                   <span className="text-danger">*</span>
                 </label>
                 <input
-                  name="name"
+                  name="dias_restantes_licencia"
                   className={`form-control ${
                     registerFormik.errors.dias_restantes_licencia &&
                     registerFormik.touched.dias_restantes_licencia
                       ? "border-danger"
                       : ""
                   }`}
-                  placeholder="Nombre"
+                  placeholder="Dias"
                   type="text"
                   value={registerFormik.values.dias_restantes_licencia}
                   onChange={registerFormik.handleChange}
@@ -221,14 +221,14 @@ export const ModalNewDriver = () => {
                   <span className="text-danger">*</span>
                 </label>
                 <input
-                  name="name"
+                  name="comparendos"
                   className={`form-control ${
                     registerFormik.errors.comparendos &&
                     registerFormik.touched.comparendos
                       ? "border-danger"
                       : ""
                   }`}
-                  placeholder="Nombre"
+                  placeholder="Comparendos"
                   type="text"
                   value={registerFormik.values.comparendos}
                   onChange={registerFormik.handleChange}
@@ -250,14 +250,14 @@ export const ModalNewDriver = () => {
                   <span className="text-danger">*</span>
                 </label>
                 <input
-                  name="name"
+                  name="acuerdo_pago"
                   className={`form-control ${
                     registerFormik.errors.acuerdo_pago &&
                     registerFormik.touched.acuerdo_pago
                       ? "border-danger"
                       : ""
                   }`}
-                  placeholder="Nombre"
+                  placeholder="Acuerdo"
                   type="text"
                   value={registerFormik.values.acuerdo_pago}
                   onChange={registerFormik.handleChange}
@@ -277,14 +277,14 @@ export const ModalNewDriver = () => {
                   <span className="text-danger">*</span>
                 </label>
                 <input
-                  name="name"
+                  name="vencimiento_curso"
                   className={`form-control ${
                     registerFormik.errors.vencimiento_curso &&
                     registerFormik.touched.vencimiento_curso
                       ? "border-danger"
                       : ""
                   }`}
-                  placeholder="Nombre"
+                  placeholder=""
                   type="date"
                   value={registerFormik.values.vencimiento_curso}
                   onChange={registerFormik.handleChange}
@@ -304,14 +304,14 @@ export const ModalNewDriver = () => {
                   <span className="text-danger">*</span>
                 </label>
                 <input
-                  name="name"
+                  name="dias_restantes_curso"
                   className={`form-control ${
                     registerFormik.errors.dias_restantes_curso &&
                     registerFormik.touched.dias_restantes_curso
                       ? "border-danger"
                       : ""
                   }`}
-                  placeholder="Nombre"
+                  placeholder="Dias"
                   type="text"
                   value={registerFormik.values.dias_restantes_curso}
                   onChange={registerFormik.handleChange}
