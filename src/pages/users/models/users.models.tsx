@@ -1,20 +1,20 @@
 export interface UsersModel {
   id: number;
-  name_surname: string;
-  email_user: string;
-  pass_user: string;
+  name: string;
+  email: string;
+  password: string;
   created_user: string;
 }
 
 export interface RegisterUserModel {
-  name_surname: string;
-  email_user: string;
-  pass_user: string;
+  name: string;
+  email: string;
+  password: string;
 }
 
 export interface UserUpdateModel {
   id: number;
-  name_surname: string;
-  email_user: string;
-  pass_user: string;
+  name: string;
+  email: string;
+  password: string;
 }

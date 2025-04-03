@@ -20,6 +20,5 @@ export const DeleteUser = async (userId: number) => {
   const { data } = await api.delete("usersSQLW/delete_user", {
     params: { userId },
   });
-  console.log(data);
   return data;
 };

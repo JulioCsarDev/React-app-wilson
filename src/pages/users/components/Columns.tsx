@@ -17,17 +17,17 @@ export const columns = ({
   {
     accessorKey: "user",
     header: "Usuario",
-    cell: ({ row }) => row.original.name_surname,
+    cell: ({ row }) => row.original.name,
   },
   {
     accessorKey: "email",
     header: "Email",
-    cell: ({ row }) => row.original.email_user,
+    cell: ({ row }) => row.original.email,
   },
   {
     accessorKey: "password",
     header: "Contraseña",
-    cell: ({ row }) => row.original.pass_user,
+    cell: ({ row }) => row.original.password,
   },
   {
     accessorKey: "created_user",

@@ -1,9 +1,9 @@
 import Swal from "sweetalert2";
 import { useState, useRef } from "react";
 import { Modal } from "react-bootstrap";
-import { queryClient } from '../../../providers';
+import { queryClient } from "../../../providers";
 import { toAbsoluteUrl } from "../../../utils/Assets";
-import { UploadFile } from "../services/employees.services";
+import { UploadFile } from "../services/drivers.services";
 
 export const ModalUploadFile = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,40 +22,43 @@ export const ModalUploadFile = () => {
 
   const handleUpdloadFile = () => {
     Swal.fire({
-      title: 'Subir Archivo',
-      text: 'Se guardara el archivo seleccionado.',
-      icon: 'question',
+      title: "Subir Archivo",
+      text: "Se guardara el archivo seleccionado.",
+      icon: "question",
       showCancelButton: true,
-      confirmButtonText: 'Sí, Guardar',
-      cancelButtonText: 'Cancelar',
+      confirmButtonText: "Sí, Guardar",
+      cancelButtonText: "Cancelar",
       customClass: {
-        popup: 'max-w-md p-4 bg-white rounded-lg shadow-xl',
-        title: 'text-xl font-bold text-gray-800',
-        confirmButton: 'btn btn-primary text-sm',
-        cancelButton: 'btn btn-secondary text-sm'
+        popup: "max-w-md p-4 bg-white rounded-lg shadow-xl",
+        title: "text-xl font-bold text-gray-800",
+        confirmButton: "btn btn-primary text-sm",
+        cancelButton: "btn btn-secondary text-sm",
       },
       didOpen: () => {
-        document.body.classList.remove('swal2-shown', 'swal2-height-auto');
-      }
+        document.body.classList.remove("swal2-shown", "swal2-height-auto");
+      },
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
           Swal.fire({
-            title: 'Validando archivo...',
-            text: 'Creando Pedidos, por favor espere un momento.',
-            icon: 'info',
+            title: "Validando archivo...",
+            text: "Creando Pedidos, por favor espere un momento.",
+            icon: "info",
             allowOutsideClick: false,
             showConfirmButton: false,
             customClass: {
-              popup: 'max-w-md p-4 bg-white rounded-lg shadow-xl',
-              title: 'text-base font-bold text-gray-800',
-              confirmButton: 'btn btn-primary text-sm',
-              cancelButton: 'btn btn-secondary text-sm'
+              popup: "max-w-md p-4 bg-white rounded-lg shadow-xl",
+              title: "text-base font-bold text-gray-800",
+              confirmButton: "btn btn-primary text-sm",
+              cancelButton: "btn btn-secondary text-sm",
             },
             didOpen: () => {
               Swal.showLoading();
-              document.body.classList.remove('swal2-shown', 'swal2-height-auto');
-            }
+              document.body.classList.remove(
+                "swal2-shown",
+                "swal2-height-auto"
+              );
+            },
           });
 
           if (selectedFile) {
@@ -66,41 +69,46 @@ export const ModalUploadFile = () => {
           handleRemoveFile();
 
           queryClient.invalidateQueries({
-            queryKey: ["employees"]
+            queryKey: ["drivers"],
           });
 
           Swal.fire({
-            title: 'Archivo guardado',
-            text: 'Se registraron los empleados correctamente',
-            icon: 'success',
+            title: "Archivo guardado",
+            text: "Se registraron los conductores correctamente",
+            icon: "success",
             customClass: {
-              popup: 'max-w-md p-4 bg-white rounded-lg shadow-xl',
-              title: 'text-xl font-bold text-gray-800',
-              confirmButton: 'btn btn-primary text-sm'
+              popup: "max-w-md p-4 bg-white rounded-lg shadow-xl",
+              title: "text-xl font-bold text-gray-800",
+              confirmButton: "btn btn-primary text-sm",
             },
             didOpen: () => {
-              document.body.classList.remove('swal2-shown', 'swal2-height-auto');
-            }
+              document.body.classList.remove(
+                "swal2-shown",
+                "swal2-height-auto"
+              );
+            },
           });
-
         } catch (error) {
           Swal.fire({
-            title: 'Error al validar el archivo',
-            text: 'Verifique el archivo nuevamente',
-            icon: 'error',
+            title: "Error al validar el archivo",
+            text: "Verifique el archivo nuevamente",
+            icon: "error",
             customClass: {
-              popup: 'max-w-md p-4 bg-white rounded-lg shadow-xl',
-              title: 'text-xl font-bold text-gray-800',
-              confirmButton: 'btn btn-primary text-sm'
+              popup: "max-w-md p-4 bg-white rounded-lg shadow-xl",
+              title: "text-xl font-bold text-gray-800",
+              confirmButton: "btn btn-primary text-sm",
             },
             didOpen: () => {
-              document.body.classList.remove('swal2-shown', 'swal2-height-auto');
-            }
+              document.body.classList.remove(
+                "swal2-shown",
+                "swal2-height-auto"
+              );
+            },
           });
         }
       }
     });
-  }
+  };
 
   return (
     <>
@@ -120,8 +128,8 @@ export const ModalUploadFile = () => {
             >
               <div className="card-body d-flex justify-content-center align-items-center flex-column">
                 <img src={toAbsoluteUrl("/media/excelModal.png")} />
-                <h4>Lista de Empleados</h4>
-                <span>Archivo de Empleados</span>
+                <h4>Lista de Conductores</h4>
+                <span>Archivo de Conductores</span>
               </div>
               <input
                 className="d-none"
@@ -160,7 +168,11 @@ export const ModalUploadFile = () => {
           >
             Cancelar
           </button>
-          <button className="btn btn-primary" onClick={handleUpdloadFile} disabled={!selectedFile}>
+          <button
+            className="btn btn-primary"
+            onClick={handleUpdloadFile}
+            disabled={!selectedFile}
+          >
             Cargar Archivo
           </button>
         </Modal.Footer>

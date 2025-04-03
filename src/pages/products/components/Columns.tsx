@@ -1,7 +1,7 @@
-import { ConductorModel } from "../models/conductor.models";
+import { DriverModel } from "../models/conductor.models";
 import { ColumnDef } from "@tanstack/react-table";
 
-export const columns: ColumnDef<ConductorModel>[] = [
+export const columns: ColumnDef<DriverModel>[] = [
   {
     accessorKey: "number",
     header: "N°",
@@ -10,17 +10,12 @@ export const columns: ColumnDef<ConductorModel>[] = [
   {
     accessorKey: "numero_identificacion",
     header: "Cedula",
-    cell: ({ row }) => row.original.numero_identificacion,
+    cell: ({ row }) => row.original.cedula,
   },
   {
-    accessorKey: "nombre_conductor",
-    header: "Nombre",
-    cell: ({ row }) => row.original.nombre_conductor,
-  },
-  {
-    accessorKey: "apellido_conductor",
-    header: "Apellido",
-    cell: ({ row }) => row.original.apellido_conductor,
+    accessorKey: "nombre_apellido",
+    header: "Nombre y Apelldio",
+    cell: ({ row }) => row.original.nombre_apellido,
   },
   {
     accessorKey: "cargo",

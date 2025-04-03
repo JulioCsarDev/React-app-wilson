@@ -1,10 +1,9 @@
-import * as Yup from 'yup';
-import Swal from 'sweetalert2';
+import * as Yup from "yup";
+import Swal from "sweetalert2";
 import { useState } from "react";
-import { useFormik } from 'formik';
+import { useFormik } from "formik";
 import { Modal } from "react-bootstrap";
-import { useRegisterUser } from '../hooks/useRegisterUser';
-
+import { useRegisterUser } from "../hooks/useRegisterUser";
 
 export const ModalNewUser = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,42 +12,42 @@ export const ModalNewUser = () => {
   const { mutate: registerMutate } = useRegisterUser();
 
   const UsersSchema = Yup.object().shape({
-    name: Yup.string().required('El Nombre es requerido'),
-    email: Yup.string().required('El Correo es requerido'),
-    password: Yup.string().required('La contraseña es requerida'),
+    name: Yup.string().required("El Nombre es requerido"),
+    email: Yup.string().required("El Correo es requerido"),
+    password: Yup.string().required("La contraseña es requerida"),
   });
 
   const registerFormik = useFormik({
     initialValues: {
-      name: '',
-      email: '',
-      password: ''
+      name: "",
+      email: "",
+      password: "",
     },
     validationSchema: UsersSchema,
     onSubmit: async (values) => {
       Swal.fire({
-        title: 'Registrar Usuario',
-        text: 'Se guardaran los datos ingresados.',
-        icon: 'question',
+        title: "Registrar Usuario",
+        text: "Se guardaran los datos ingresados.",
+        icon: "question",
         showCancelButton: true,
-        confirmButtonText: 'Sí, Guardar',
-        cancelButtonText: 'Cancelar',
+        confirmButtonText: "Sí, Guardar",
+        cancelButtonText: "Cancelar",
         customClass: {
-          popup: 'max-w-md p-4 bg-white rounded-lg shadow-xl',
-          title: 'text-xl font-bold text-gray-800',
-          confirmButton: 'btn btn-primary text-sm',
-          cancelButton: 'btn btn-secondary text-sm'
+          popup: "max-w-md p-4 bg-white rounded-lg shadow-xl",
+          title: "text-xl font-bold text-gray-800",
+          confirmButton: "btn btn-primary text-sm",
+          cancelButton: "btn btn-secondary text-sm",
         },
         didOpen: () => {
-          document.body.classList.remove('swal2-shown', 'swal2-height-auto');
-        }
+          document.body.classList.remove("swal2-shown", "swal2-height-auto");
+        },
       }).then((result) => {
         if (result.isConfirmed) {
           registerMutate(values, {
             onSuccess: () => {
               registerFormik.resetForm();
-              setIsOpen(false)
-            }
+              setIsOpen(false);
+            },
           });
         }
       });
@@ -75,7 +74,11 @@ export const ModalNewUser = () => {
                 </label>
                 <input
                   name="name"
-                  className={`form-control ${registerFormik.errors.name && registerFormik.touched.name ? 'border-danger' : ''}`}
+                  className={`form-control ${
+                    registerFormik.errors.name && registerFormik.touched.name
+                      ? "border-danger"
+                      : ""
+                  }`}
                   placeholder="Nombre"
                   type="text"
                   value={registerFormik.values.name}
@@ -97,19 +100,25 @@ export const ModalNewUser = () => {
                 </label>
                 <input
                   name="password"
-                  className={`form-control ${registerFormik.errors.password && registerFormik.touched.password ? 'border-danger' : ''}`}
-                  placeholder="Correo"
+                  className={`form-control ${
+                    registerFormik.errors.password &&
+                    registerFormik.touched.password
+                      ? "border-danger"
+                      : ""
+                  }`}
+                  placeholder="Contraseña"
                   type="text"
                   value={registerFormik.values.password}
                   onChange={registerFormik.handleChange}
                   onBlur={registerFormik.handleBlur}
                 />
-                {registerFormik.errors.password && registerFormik.touched.password && (
-                  <div className="text-danger text-[13px]">
-                    <i className="ki-filled ki-information me-1"></i>
-                    {registerFormik.errors.password}
-                  </div>
-                )}
+                {registerFormik.errors.password &&
+                  registerFormik.touched.password && (
+                    <div className="text-danger text-[13px]">
+                      <i className="ki-filled ki-information me-1"></i>
+                      {registerFormik.errors.password}
+                    </div>
+                  )}
               </div>
             </div>
             <div className="row">
@@ -120,19 +129,24 @@ export const ModalNewUser = () => {
                 </label>
                 <input
                   name="email"
-                  className={`form-control ${registerFormik.errors.email && registerFormik.touched.email ? 'border-danger' : ''}`}
+                  className={`form-control ${
+                    registerFormik.errors.email && registerFormik.touched.email
+                      ? "border-danger"
+                      : ""
+                  }`}
                   placeholder="Correo"
                   type="text"
                   value={registerFormik.values.email}
                   onChange={registerFormik.handleChange}
                   onBlur={registerFormik.handleBlur}
                 />
-                {registerFormik.errors.email && registerFormik.touched.email && (
-                  <div className="text-danger text-[13px]">
-                    <i className="ki-filled ki-information me-1"></i>
-                    {registerFormik.errors.email}
-                  </div>
-                )}
+                {registerFormik.errors.email &&
+                  registerFormik.touched.email && (
+                    <div className="text-danger text-[13px]">
+                      <i className="ki-filled ki-information me-1"></i>
+                      {registerFormik.errors.email}
+                    </div>
+                  )}
               </div>
             </div>
           </form>
