@@ -10,19 +10,20 @@ import {
   SortingState,
 } from "@tanstack/react-table";
 import { DataTable } from "../../components/datatable/DataTable";
-import { useEmployees } from "./hooks/useDrivers";
+import { useDrivers } from "./hooks/useDrivers";
 import Pagination from "../../components/paginator/Paginator";
 import { useState } from "react";
 import { ModalUploadFile } from "./components/ModalUploadFile";
+import { ModalNewDriver } from "./components/ModalNewDriver";
 
 export const ConductoresPage = () => {
-  const { data: Employees } = useEmployees();
+  const { data: Drivers } = useDrivers();
 
   const [globalFilter, setGlobalFilter] = useState("");
   const [sorting, setSorting] = useState<SortingState>([]);
 
   const table = useReactTable({
-    data: Employees || [],
+    data: Drivers || [],
     columns: columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
@@ -38,7 +39,11 @@ export const ConductoresPage = () => {
 
   return (
     <Container>
-      <Card tittle="Conductores" toolbar={<ModalUploadFile />}>
+      <Card
+        tittle="Conductores"
+        toolbarD={<ModalNewDriver />}
+        toolbarA={<ModalUploadFile />}
+      >
         <DataTable
           table={table}
           columns={columns}

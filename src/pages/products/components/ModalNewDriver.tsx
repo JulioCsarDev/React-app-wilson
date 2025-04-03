@@ -5,7 +5,7 @@ import { useFormik } from "formik";
 import { Modal } from "react-bootstrap";
 import { useRegisterDriver } from "../hooks/UseRegisterDrivers";
 
-export const ModalNewUser = () => {
+export const ModalNewDriver = () => {
   const [isOpen, setIsOpen] = useState(false);
   const openModal = () => setIsOpen(true);
 
@@ -25,20 +25,20 @@ export const ModalNewUser = () => {
 
   const registerFormik = useFormik({
     initialValues: {
-      cedula: "",
+      cedula: 0,
       nombre_apellido: "",
       cargo: "",
       vencimiento_licencia: "",
-      dias_restantes_licencia: "",
+      dias_restantes_licencia: 0,
       comparendos: "",
       acuerdo_pago: "",
       vencimiento_curso: "",
-      dias_restantes_curso: "",
+      dias_restantes_curso: 0,
     },
     validationSchema: DriverSchema,
     onSubmit: async (values) => {
       Swal.fire({
-        title: "Registrar Usuario",
+        title: "Registrar Conductor",
         text: "Se guardaran los datos ingresados.",
         icon: "question",
         showCancelButton: true,
@@ -106,7 +106,6 @@ export const ModalNewUser = () => {
                     </div>
                   )}
               </div>
-
               <div className="col">
                 <label className="form-label mb-2">
                   Nombre y Apellido

@@ -7,7 +7,7 @@ export const GetAllDrivers = async () => {
 };
 
 export const RegisterNewDriver = async (driver: RegisterDriverModel) => {
-  const { data } = await api.post("/drivers/create_user", driver);
+  const { data } = await api.post("/drivers/create_driver", driver);
   return data;
 };
 
