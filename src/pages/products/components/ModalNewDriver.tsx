@@ -25,15 +25,15 @@ export const ModalNewDriver = () => {
 
   const registerFormik = useFormik({
     initialValues: {
-      cedula: 0,
+      cedula: "",
       nombre_apellido: "",
       cargo: "",
       vencimiento_licencia: "",
-      dias_restantes_licencia: 0,
+      dias_restantes_licencia: "",
       comparendos: "",
       acuerdo_pago: "",
       vencimiento_curso: "",
-      dias_restantes_curso: 0,
+      dias_restantes_curso: "",
     },
     validationSchema: DriverSchema,
     onSubmit: async (values) => {
@@ -72,7 +72,7 @@ export const ModalNewDriver = () => {
         <i className="bi bi-person-fill-add pe-2 fs-5"></i>
         Agregar Conductor
       </button>
-      <Modal show={isOpen} onHide={() => setIsOpen(false)}>
+      <Modal className="" show={isOpen} onHide={() => setIsOpen(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Agregar Conductor</Modal.Title>
         </Modal.Header>

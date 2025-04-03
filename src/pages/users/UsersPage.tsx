@@ -29,7 +29,7 @@ export const UsersPage = () => {
   const handleClickEdit = (user: UsersModel) => {
     setSelectedUser(user);
     setIsOpen(true);
-  }
+  };
 
   const table = useReactTable({
     data: Users || [],
@@ -47,7 +47,7 @@ export const UsersPage = () => {
   });
   return (
     <Container>
-      <Card tittle="Usuarios" toolbar={<ModalNewUser />}>
+      <Card tittle="Usuarios" toolbarA={<ModalNewUser />}>
         <DataTable
           table={table}
           columns={columns({ handleClickEdit })}
@@ -69,7 +69,11 @@ export const UsersPage = () => {
             </div>
           }
         />
-        <ModalUpdateUser user={selectedUser} isOpen={isOpen} setIsOpen={setIsOpen} />
+        <ModalUpdateUser
+          user={selectedUser}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+        />
       </Card>
     </Container>
   );

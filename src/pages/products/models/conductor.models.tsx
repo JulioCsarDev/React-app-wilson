@@ -1,23 +1,23 @@
 export interface DriverModel {
-  cedula: number;
+  cedula: string;
   nombre_apellido: string;
   cargo: string;
   vencimiento_licencia: string;
-  dias_restantes_licencia: number;
+  dias_restantes_licencia: string;
   comparendos: string;
   acuerdo_pago: string;
   vencimiento_curso: string;
-  dias_restantes_curso: number;
+  dias_restantes_curso: string;
 }
 
 export interface RegisterDriverModel {
-  cedula: number;
+  cedula: string;
   nombre_apellido: string;
   cargo: string;
   vencimiento_licencia: string;
-  dias_restantes_licencia: number;
+  dias_restantes_licencia: string;
   comparendos: string;
   acuerdo_pago: string;
   vencimiento_curso: string;
-  dias_restantes_curso: number;
+  dias_restantes_curso: string;
 }
