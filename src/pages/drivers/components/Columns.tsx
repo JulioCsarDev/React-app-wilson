@@ -1,7 +1,14 @@
 import { DriverModel } from "../models/conductor.models";
 import { ColumnDef } from "@tanstack/react-table";
+import { DeleteDriver } from "./DeleteDriver";
 
-export const columns: ColumnDef<DriverModel>[] = [
+interface ColumnsProps {
+  handleClickEdit: (driver: DriverModel) => void;
+}
+
+export const columns = ({
+  handleClickEdit,
+}: ColumnsProps): ColumnDef<DriverModel>[] => [
   {
     accessorKey: "number",
     header: "N°",
@@ -31,12 +38,15 @@ export const columns: ColumnDef<DriverModel>[] = [
           <button className="btn btn-sm btn-outline-secondary">
             <i className="bi bi-eye"></i>
           </button>
-          <button className="btn btn-sm btn-outline-primary">
+          <button
+            className="btn btn-sm btn-outline-primary"
+            onClick={() => handleClickEdit(row.original)}
+          >
             <i className="bi bi-pencil-square"></i>
           </button>
-          <button className="btn btn-sm btn-outline-danger">
-            <i className="bi bi-trash3"></i>
-          </button>
+          {row.original.id_conductor !== undefined && (
+            <DeleteDriver id_conductor={row.original.id_conductor} />
+          )}
         </div>
       );
     },

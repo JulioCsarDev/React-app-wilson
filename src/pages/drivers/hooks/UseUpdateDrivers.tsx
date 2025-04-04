@@ -1,14 +1,14 @@
 import { toast } from "sonner";
 import { useMutation } from "react-query";
 import { queryClient } from "../../../providers";
-import { DeleteUser } from "../services/drivers.services";
+import { UploadDriver } from "../services/drivers.services";
 
-export const useDeleteDriver = () => {
+export const useUpdateDriver = () => {
   const mutation = useMutation({
-    mutationFn: DeleteUser,
+    mutationFn: UploadDriver,
 
     onMutate: () => {
-      toast.loading("Eliminando Usuario", {
+      toast.loading("Actualizando Conductor", {
         description: "Por favor espere un momento",
       });
     },
@@ -17,14 +17,14 @@ export const useDeleteDriver = () => {
       queryClient.invalidateQueries({
         queryKey: ["drivers"],
       });
-      toast.success("✅ ¡Usuario Eliminado!", {
-        description: "El usuario fue eliminado correctamente",
+      toast.success("✅ ¡Conductor Actualizado!", {
+        description: "El conductor fue actulizado correctamente",
       });
     },
     onError: (error: any) => {
       toast.dismiss();
       // Verifica si el error es un objeto con la propiedad 'response'
-      let errorMessage = "Error al eliminado el usuario";
+      let errorMessage = "Error al actualizar el conductor";
 
       if (error?.response?.data?.detail) {
         // Si existe 'response' y 'detail', accede al detalle del error

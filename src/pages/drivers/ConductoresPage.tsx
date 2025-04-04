@@ -15,6 +15,8 @@ import Pagination from "../../components/paginator/Paginator";
 import { useState } from "react";
 import { ModalUploadFile } from "./components/ModalUploadFile";
 import { ModalNewDriver } from "./components/ModalNewDriver";
+import { DriverModel } from "./models/conductor.models";
+import { ModalUpdateDriver } from "./components/ModalUpdateDriver";
 
 export const ConductoresPage = () => {
   const { data: Drivers } = useDrivers();
@@ -22,9 +24,20 @@ export const ConductoresPage = () => {
   const [globalFilter, setGlobalFilter] = useState("");
   const [sorting, setSorting] = useState<SortingState>([]);
 
+  const [selectedDriver, setSelectedDriver] = useState<DriverModel | null>(
+    null
+  );
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleClickEdit = (driver: DriverModel) => {
+    setSelectedDriver(driver);
+    setIsOpen(true);
+  };
+
   const table = useReactTable({
     data: Drivers || [],
-    columns: columns,
+    columns: columns({ handleClickEdit }),
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
@@ -46,7 +59,7 @@ export const ConductoresPage = () => {
       >
         <DataTable
           table={table}
-          columns={columns}
+          columns={columns({ handleClickEdit })}
           footer={<Pagination table={table} />}
           nameTable="Lista de Conductores"
           filterGlobal={
@@ -66,6 +79,11 @@ export const ConductoresPage = () => {
           }
         />
       </Card>
+      <ModalUpdateDriver
+        driver={selectedDriver}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+      />
     </Container>
   );
 };

@@ -1,7 +1,7 @@
 import Swal from "sweetalert2";
 import { useDeleteDriver } from "../hooks/useDeleteDriver";
 
-export const DeleteUser = ({ cedula }: { cedula: number }) => {
+export const DeleteDriver = ({ id_conductor }: { id_conductor: number }) => {
   const { mutate: deleteMutate } = useDeleteDriver();
 
   const handleDelete = () => {
@@ -23,7 +23,7 @@ export const DeleteUser = ({ cedula }: { cedula: number }) => {
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        deleteMutate(cedula);
+        deleteMutate(id_conductor);
       }
     });
   };

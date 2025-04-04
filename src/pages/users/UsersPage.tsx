@@ -69,12 +69,12 @@ export const UsersPage = () => {
             </div>
           }
         />
-        <ModalUpdateUser
-          user={selectedUser}
-          isOpen={isOpen}
-          setIsOpen={setIsOpen}
-        />
       </Card>
+      <ModalUpdateUser
+        user={selectedUser}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+      />
     </Container>
   );
 };

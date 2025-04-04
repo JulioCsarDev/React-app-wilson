@@ -1,4 +1,5 @@
 export interface DriverModel {
+  id_conductor?: number;
   cedula?: number;
   nombre_apellido: string;
   cargo: string;

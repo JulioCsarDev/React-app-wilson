@@ -48,30 +48,24 @@ export const ModalUpdateUser = ({ user, isOpen, setIsOpen }: Props) => {
         },
       }).then((result) => {
         if (result.isConfirmed) {
-          updateMutate(
-            {
-              id: values.id,
-              name: values.name,
-              email: values.email,
-              password: values.password,
+          updateMutate(values, {
+            onSuccess: () => {
+              updateFormik.resetForm();
+              setIsOpen(false);
             },
-            {
-              onSuccess: () => {
-                updateFormik.resetForm();
-                setIsOpen(false);
-              },
-            }
-          );
+          });
         }
       });
     },
   });
 
   useEffect(() => {
-    updateFormik.setFieldValue("id", user?.id);
-    updateFormik.setFieldValue("name", user?.name);
-    updateFormik.setFieldValue("email", user?.email);
-    updateFormik.setFieldValue("password", user?.password);
+    if (user) {
+      updateFormik.setFieldValue("id", user?.id);
+      updateFormik.setFieldValue("name", user?.name);
+      updateFormik.setFieldValue("email", user?.email);
+      updateFormik.setFieldValue("password", user?.password);
+    }
   }, [user]);
 
   return (

@@ -52,7 +52,7 @@ export const Sidebar = () => {
             <Link
               key={item.id}
               to={item.path}
-              className="d-flex text-decoration-none text-white mx-2 my-2 p-2 btn-hover-success"
+              className="d-flex text-decoration-none text-white mx-2 my-2 p-2"
               style={{}}
             >
               <i className={`bi bi-${item.icon} mx-2`}></i>

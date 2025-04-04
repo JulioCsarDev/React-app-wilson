@@ -1,5 +1,5 @@
 import { api } from "../../../config/axios.instance";
-import { RegisterDriverModel } from "../models/conductor.models";
+import { DriverModel, RegisterDriverModel } from "../models/conductor.models";
 
 export const GetAllDrivers = async () => {
   const { data } = await api.get("/drivers/get_all_drivers");
@@ -11,6 +11,11 @@ export const RegisterNewDriver = async (driver: RegisterDriverModel) => {
   return data;
 };
 
+export const UploadDriver = async (id_conductor: DriverModel) => {
+  const { data } = await api.post("/drivers/update_driver", id_conductor);
+  return data;
+};
+
 export const UploadFile = async (file: File) => {
   const formData = new FormData();
   formData.append("file", file);
@@ -18,9 +23,9 @@ export const UploadFile = async (file: File) => {
   return data;
 };
 
-export const DeleteUser = async (cedula: number) => {
-  const { data } = await api.delete("/drivers/delete_driver", {
-    params: { cedula },
+export const DeleteDriver = async (id_conductor: number) => {
+  const { data } = await api.delete("drivers/delete_driver", {
+    params: { id_conductor },
   });
   return data;
 };
