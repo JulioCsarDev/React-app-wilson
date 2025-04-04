@@ -17,6 +17,7 @@ import { ModalUploadFile } from "./components/ModalUploadFile";
 import { ModalNewDriver } from "./components/ModalNewDriver";
 import { DriverModel } from "./models/conductor.models";
 import { ModalUpdateDriver } from "./components/ModalUpdateDriver";
+import { ModalDetailDriver } from "./components/ModalDetailDriver";
 
 export const ConductoresPage = () => {
   const { data: Drivers } = useDrivers();
@@ -29,15 +30,20 @@ export const ConductoresPage = () => {
   );
 
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpenModelDetail, setIsOpenModalDetail] = useState(false);
 
   const handleClickEdit = (driver: DriverModel) => {
     setSelectedDriver(driver);
     setIsOpen(true);
   };
+  const handleClickDetail = (driver: DriverModel) => {
+    setSelectedDriver(driver);
+    setIsOpenModalDetail(true);
+  };
 
   const table = useReactTable({
     data: Drivers || [],
-    columns: columns({ handleClickEdit }),
+    columns: columns({ handleClickEdit, handleClickDetail }),
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
@@ -54,12 +60,15 @@ export const ConductoresPage = () => {
     <Container>
       <Card
         tittle="Conductores"
-        toolbarD={<ModalNewDriver />}
-        toolbarA={<ModalUploadFile />}
+        toolbar={
+          <div>
+            <ModalNewDriver /> <ModalUploadFile />
+          </div>
+        }
       >
         <DataTable
           table={table}
-          columns={columns({ handleClickEdit })}
+          columns={columns({ handleClickEdit, handleClickDetail })}
           footer={<Pagination table={table} />}
           nameTable="Lista de Conductores"
           filterGlobal={
@@ -83,6 +92,11 @@ export const ConductoresPage = () => {
         driver={selectedDriver}
         isOpen={isOpen}
         setIsOpen={setIsOpen}
+      />
+      <ModalDetailDriver
+        driver={selectedDriver}
+        isOpenModalDetail={isOpenModelDetail}
+        setIsOpenModalDetail={setIsOpenModalDetail}
       />
     </Container>
   );

@@ -4,10 +4,12 @@ import { DeleteDriver } from "./DeleteDriver";
 
 interface ColumnsProps {
   handleClickEdit: (driver: DriverModel) => void;
+  handleClickDetail: (driver: DriverModel) => void;
 }
 
 export const columns = ({
   handleClickEdit,
+  handleClickDetail,
 }: ColumnsProps): ColumnDef<DriverModel>[] => [
   {
     accessorKey: "number",
@@ -35,7 +37,10 @@ export const columns = ({
     cell: ({ row }) => {
       return (
         <div className="d-flex gap-2">
-          <button className="btn btn-sm btn-outline-secondary">
+          <button
+            className="btn btn-sm btn-outline-secondary"
+            onClick={() => handleClickDetail(row.original)}
+          >
             <i className="bi bi-eye"></i>
           </button>
           <button

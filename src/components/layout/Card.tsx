@@ -3,12 +3,11 @@ import { ReactNode } from "react";
 interface CardProps {
   children: ReactNode;
   tittle: string;
-  toolbarA?: ReactNode;
-  toolbarD?: ReactNode;
+  toolbar?: ReactNode;
   footer?: ReactNode;
 }
 
-function Card({ children, tittle, toolbarA, toolbarD, footer }: CardProps) {
+function Card({ children, tittle, toolbar, footer }: CardProps) {
   return (
     <div
       className="card"
@@ -21,10 +20,7 @@ function Card({ children, tittle, toolbarA, toolbarD, footer }: CardProps) {
         <div className="card-toolbar">
           <div className="card-tittle fs-4 fw-semibold d-flex justify-content-between">
             {tittle}
-            <div className="d-flex gap-2">
-              {toolbarD}
-              {toolbarA}
-            </div>
+            {toolbar}
           </div>
         </div>
       </div>
