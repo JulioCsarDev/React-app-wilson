@@ -24,8 +24,7 @@ export const UploadFile = async (file: File) => {
 };
 
 export const DeleteDriver = async (id_conductor: number) => {
-  const { data } = await api.delete("drivers/delete_driver", {
-    params: { id_conductor },
-  });
+  console.log(id_conductor);
+  const { data } = await api.delete(`/drivers/delete_driver/${id_conductor}`);
   return data;
 };

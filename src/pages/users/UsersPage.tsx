@@ -26,8 +26,8 @@ export const UsersPage = () => {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleClickEdit = (user: UsersModel) => {
-    setSelectedUser(user);
+  const handleClickEdit = (userId: UsersModel) => {
+    setSelectedUser(userId);
     setIsOpen(true);
   };
 
@@ -47,7 +47,7 @@ export const UsersPage = () => {
   });
   return (
     <Container>
-      <Card tittle="Usuarios" toolbarA={<ModalNewUser />}>
+      <Card tittle="Usuarios" toolbar={<ModalNewUser />}>
         <DataTable
           table={table}
           columns={columns({ handleClickEdit })}

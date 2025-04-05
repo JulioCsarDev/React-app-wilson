@@ -3,7 +3,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { UsersModel } from "../models/users.models";
 
 interface ColumnsProps {
-  handleClickEdit: (user: UsersModel) => void;
+  handleClickEdit: (userId: UsersModel) => void;
 }
 
 export const columns = ({
